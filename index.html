@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Gussing Game</title>
+    <link rel="Stylesheet" href="DOM_pro3.css">
+</head>
+<body >
+    <nav>
+        
+        <a href="/" aria-current="page"> Home</a>
+        <a  target="_blank"    href="https://www.youtube.com">youtube channel</a>
+    </nav>
+    <div id="wrapper">
+    <h1>Number Gussing game</h1>
+    <p>Try and guess a random number between 1 and 100.</p>
+    <p>you have  10 attempts to guess the right number.</p>
+    </br>
+    <form class="form">
+        <label for="guessfield" id="guess">Guess a number</label>
+
+        <input type="text" id="guessfield"  class="guessfield">
+         <br>
+        <input type="submit" id="subt" value="submit guess" class="guesssubmit">
+        
+    </form>
+    <div class="resultparas">
+        <p>Previous guesses:<span class="guesses"></span></p>
+        <p>Guesses Ramaining: <span class="lastResult">10</span></p>
+     <p class="loworhi"></p>
+    </div>
+</div>
+<script>
+    let randomnumber=Math.floor(Math.random()*100+1);
+    const submit=document.querySelector('#subt');
+    const userInput=document.querySelector('#guessfield');
+    const guessslot=document.querySelector('.guesses');
+    const remaining=document.querySelector('.lastResult');
+    const loworhi=document.querySelector('.loworhi');
+    const startover=document.querySelector('.resultparas');
+
+    const p=document.createElement('p')
+    let prevGuess=[];
+    //values enter by the user ,to store that values in array
+    let numGuess=1;
+    let playGame=true;
+    //it allows to play the game;
+    if(playGame){
+        submit.addEventListener("click",function(e){
+            e.preventDefault()
+            let guess = parseInt(userInput.value)
+            console.log(guess);
+            
+            validateguess(guess)
+        })
+    }
+
+    function validateguess(guess){
+        //it checks user gives number or not
+        if(isNaN(guess)){
+            alert('please enter a valid number')
+        } else if(guess<1){
+            alert('please enter a number more than 1')
+        } else if (guess>100){
+            alert('please enter a number less than 100')
+        }
+        
+        else{
+            prevGuess.push(guess)
+            if(numGuess==11){
+                diplayGuess(guess)
+                displayMessage(`Game over .Random number was ${randomnumber}`)
+                endgame()
+            }
+            else{
+                displayGuess(guess)
+                checkguess(guess)
+            }
+        }
+
+
+    }
+
+    function checkguess(guess){
+        guess = Number(guess);
+        //it is used to print the msg given value is high,low,like
+        
+        if(guess === randomnumber){
+          displayMessage(`you guessed it right`)
+          endgame()
+        }
+        else if(guess < randomnumber){
+             displayMessage(`Number is TOO low`);
+        }
+         else if(guess > randomnumber){
+             displayMessage(`Number is TOO high`)
+        }
+    }
+
+    function displayMessage(msg){
+        loworhi.innerHTML = `<h1>${msg}</h1>`;
+     //it directly interacts with the DOM
+    }
+
+    function displayGuess(guess){
+     userInput.value = ''
+     guessslot.innerHTML += `${guess} `
+     
+      
+     numGuess++;
+     remaining.innerHTML=`${11-numGuess} `;
+    }
+
+    function endgame(){
+        userInput.value=''
+        userInput.setAttribute('disabled','')
+        p.classList.add('button')
+        p.innerHTML='<h2 id="newgame">Start new Game </h2>'
+        startover.appendChild(p) 
+        playGame=false;
+        newgame();
+    }
+
+    function newgame(){
+        const newGameButton = document.querySelector('#newgame')
+        newGameButton.addEventListener('click',function (e) {
+            randomnumber = Math.floor(Math.random()*100+1);
+            prevGuess=[];
+            numGuess=1;
+            guessslot.innerHTML=''
+            remaining.innerHTML=11-numGuess;
+            userInput.removeAttribute('disabled');
+            startover.removeChild(p)
+            playGame=true;
+            
+        })
+    }
+
+
+</script>
+</body>
+</html>

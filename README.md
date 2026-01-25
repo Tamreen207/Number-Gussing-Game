@@ -1,2 +1,24 @@
-# DOM_Project1
-Number Guessing Game built using HTML, CSS, and JavaScript. The game generates a random number between 1 and 100 and allows the user 10 attempts to guess it, providing feedback if the guess is too high or too low.
+# 🎯 Number Guessing Game
+
+A simple and interactive Number Guessing Game built using HTML, CSS, and JavaScript.  
+The player has to guess a randomly generated number, and the game provides hints like **Too High** or **Too Low**.
+
+---
+
+## 🚀 Features
+- Random number generation
+- User input validation
+- Displays "Too High", "Too Low", or "Correct!"
+- Clean and simple UI
+- Beginner-friendly JavaScript logic
+
+---
+
+## 🛠️ Technologies Used
+- HTML5
+- CSS3
+- JavaScript (ES6)
+
+---
+
+## 📸 Screenshots

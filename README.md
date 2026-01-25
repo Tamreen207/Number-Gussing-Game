@@ -22,4 +22,5 @@ The player has to guess a randomly generated number, and the game provides hints
 ---
 
 ## 📸 Screenshots
-![Number Guessing Game][https://github.com/Tamreen207/DOM_Project1/blob/main/Screenshot%20.png?raw=true]
+![Number Guessing Game]<img width="1323" height="658" alt="image" src="https://github.com/user-attachments/assets/0294ee37-fcbf-4cef-8f2f-d3cd87b7481a" />
+
